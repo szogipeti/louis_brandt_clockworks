@@ -1,3 +1,9 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 nav{
     display: flex;
     flex-direction: row;
@@ -9,7 +15,27 @@ nav{
     padding: 1em;
 }
 
+nav ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+}
+
+nav li{
+    margin: 5px;
+}
+
 a{
     text-decoration: none;
     color: #FFFBeB;
+}
+
+img{
+    width: 25px;
+}
+
+nav input[type=text]{
+    padding: 6px;
+    border: none;
 }
