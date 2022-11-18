@@ -1,1 +1,2 @@
-# louis_brandt_clockworks
+# Louis Brandt Clockworks
+Csapattagok: Isakov Erik, Németh Kristóf, Szögi Péter
