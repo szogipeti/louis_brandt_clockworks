@@ -54,6 +54,7 @@ body{
 
 #carouselWatchControls img{
     height: 750px;
+    object-fit: cover;
 }
 
 h1{
