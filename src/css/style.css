@@ -7,17 +7,35 @@
 }
 
 body{
-    background-color: #BEAD9B;
+    background-color: #FFFBeB;
+    color: #21252e;
 }
 
-.navbar{
+#topNavbar{
     background-color: #3D3331;
     font-family: 'Yeseva One';
-    border-bottom: 1px solid #FFFBeB;
+
+}
+
+#categoryNavbar{
+    height: 60px;
+    border-top: 1px solid #21252e77;
+}
+
+#categoryNavbar a{
+    color: #21252e;
+    font-size: 100%;
+    transition: font-size 0.2s ease-in-out;
+}
+
+#categoryNavbar a:hover{
+    font-size: 110%;
+    transition: font-size 0.2s ease-in-out;
 }
 
 .navbar a{
     color: #FFFBeB;
+    text-decoration: none;
 }
 
 .navbar img{
@@ -36,4 +54,8 @@ body{
 
 #carouselWatchControls img{
     height: 750px;
+}
+
+h1{
+    font-family: 'Yeseva One';
 }
