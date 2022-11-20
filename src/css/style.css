@@ -10,6 +10,7 @@ nav{
     background-color: #3D3331;
     color: #FFFBeB;
     font-family: 'Yeseva One';
+    border-bottom: 1px solid #FFFBeB;
 }
 
 nav img{
@@ -24,4 +25,8 @@ nav img{
 .btn-outline-custom:hover{
     background-color: #FFFBeB;
     color: #3D3331;
+}
+
+#carouselWatchControls img{
+    height: 750px;
 }
