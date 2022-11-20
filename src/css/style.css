@@ -6,14 +6,21 @@
     box-sizing: border-box;
 }
 
-nav{
+body{
+    background-color: #BEAD9B;
+}
+
+.navbar{
     background-color: #3D3331;
-    color: #FFFBeB;
     font-family: 'Yeseva One';
     border-bottom: 1px solid #FFFBeB;
 }
 
-nav img{
+.navbar a{
+    color: #FFFBeB;
+}
+
+.navbar img{
     width: 25px;
 }
 
