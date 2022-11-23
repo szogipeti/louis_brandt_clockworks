@@ -1,0 +1,26 @@
+{
+
+    "items": [
+        {"id": 1, "tagIds": [1], "brandId": 1, "title": "ora1", "description": "Legjobb óra ever", "price": "1000", "currency": "USD", "image": "", "remaining": 4, "rating": 4.2},
+        {"id": 2, "tagIds": [2], "brandId": 3, "title": "ora2", "description": "Legjobb óra ever", "price": "2000", "currency": "USD", "image": "", "remaining": 4, "rating": 4.2},
+        {"id": 3, "tagIds": [2,3], "brandId": 4, "title": "ora3", "description": "Legjobb óra ever", "price": "3000", "currency": "USD", "image": "", "remaining": 4, "rating": 4.2},
+        {"id": 4, "tagIds": [1,4], "brandId": 2, "title": "ora4", "description": "Legjobb óra ever", "price": "4000", "currency": "USD", "image": "", "remaining": 4, "rating": 4.2}
+    ],
+
+    "tags": [
+        { "id": 1, "name": "man" },
+        { "id": 2, "name": "female" },
+        { "id": 3, "name": "child" },
+        { "id": 4, "name": "elegant" },
+        { "id": 5, "name": "wristWatch" },
+        { "id": 6, "name": "pocketWatch" }
+    ],
+
+    "brands": [
+        { "id": 1, "name": "Rolex" },
+        { "id": 2, "name": "Emporio Armani"},
+        { "id": 3, "name": "Hamilton"},
+        { "id": 4, "name": "Michael Kors"},
+        { "id": 5, "name": "Hilfigger Tamás"}
+    ]
+}
