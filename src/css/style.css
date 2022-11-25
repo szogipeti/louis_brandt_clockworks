@@ -42,7 +42,9 @@ body{
     width: 25px;
 }
 
-.btn-outline-custom{
+
+
+.btn-outline-custom:any-link{
     border-color: #FFFBeB;
     color: #FFFBeB;
 }
