@@ -34,9 +34,15 @@ body{
 }
 
 .navbar a{
-    color: #FFFBeB;
+    color: #000000;
     text-decoration: none;
 }
+
+.navbar a:any-link{
+    color: #000000;
+    text-decoration: none;
+}
+
 
 .navbar img{
     width: 25px;
@@ -67,6 +73,15 @@ h2{
     font-family: 'Yeseva One';
 }
 
+* {
+    font-size: 100%;
+    font-family: 'Yeseva One';
+}
+
+.card-text{
+    text-align: justify;
+}
+
 a:any-link {
 color: inherit;
 text-decoration: inherit;
@@ -75,4 +90,18 @@ text-decoration: inherit;
 #item-container{
     width: 80%;
     margin:auto;
+}
+
+
+#purchase-item-image{
+    float: left;
+    width: 300px;
+}
+
+#fab{
+    float: right;
+    margin: 40px;
+    position: absolute;
+    bottom: -1rem;
+    right: -1rem;
 }
