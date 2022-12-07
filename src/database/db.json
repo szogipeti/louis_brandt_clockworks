@@ -8,12 +8,12 @@
     ],
 
     "tags": [
-        { "id": 1, "name": "man" },
-        { "id": 2, "name": "female" },
-        { "id": 3, "name": "child" },
-        { "id": 4, "name": "elegant" },
-        { "id": 5, "name": "wristWatch" },
-        { "id": 6, "name": "pocketWatch" }
+        { "id": 1, "name": "Man" },
+        { "id": 2, "name": "Female" },
+        { "id": 3, "name": "Child" },
+        { "id": 4, "name": "Elegant" },
+        { "id": 5, "name": "Wristwatch" },
+        { "id": 6, "name": "Pocketwatch" }
     ],
 
     "brands": [

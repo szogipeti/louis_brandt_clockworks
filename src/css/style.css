@@ -20,6 +20,7 @@ body{
 #categoryNavbar{
     height: 60px;
     border-top: 1px solid #21252e77;
+    z-index: 99999;
 }
 
 #categoryNavbar a{
