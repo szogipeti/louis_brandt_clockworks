@@ -22,5 +22,9 @@
         { "id": 3, "name": "Hamilton"},
         { "id": 4, "name": "Michael Kors"},
         { "id": 5, "name": "Hilfigger Tamás"}
+    ],
+
+    "shopping_cart_item_ids":[
+        1, 2
     ]
 }
