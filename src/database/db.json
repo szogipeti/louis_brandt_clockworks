@@ -1,10 +1,9 @@
 {
-
     "items": [
-        {"id": 1, "tagIds": [1], "brandId": 1, "title": "ora1", "description": "Legjobb óra ever", "price": "1000", "currency": "USD", "image": "", "remaining": 4, "rating": 4.2},
-        {"id": 2, "tagIds": [2], "brandId": 3, "title": "ora2", "description": "Legjobb óra ever", "price": "2000", "currency": "USD", "image": "", "remaining": 4, "rating": 4.2},
-        {"id": 3, "tagIds": [2,3], "brandId": 4, "title": "ora3", "description": "Legjobb óra ever", "price": "3000", "currency": "USD", "image": "", "remaining": 4, "rating": 4.2},
-        {"id": 4, "tagIds": [1,4], "brandId": 2, "title": "ora4", "description": "Legjobb óra ever", "price": "4000", "currency": "USD", "image": "", "remaining": 4, "rating": 4.2}
+        {"id": 1, "tagIds": [1], "brandId": 1, "imageId": 2, "title": "ora1", "description": "Legjobb óra ever", "price": "1000", "currency": "USD", "image": "", "remaining": 4, "rating": 4.2},
+        {"id": 2, "tagIds": [2], "brandId": 3, "imageId": 3, "title": "ora2", "description": "Legjobb óra ever", "price": "2000", "currency": "USD", "image": "", "remaining": 4, "rating": 4.2},
+        {"id": 3, "tagIds": [2,3], "brandId": 4, "imageId": 1, "title": "ora3", "description": "Legjobb óra ever", "price": "3000", "currency": "USD", "image": "", "remaining": 4, "rating": 4.2},
+        {"id": 4, "tagIds": [1,4], "brandId": 2, "imageId": 2, "title": "ora4", "description": "Legjobb óra ever", "price": "4000", "currency": "USD", "image": "", "remaining": 4, "rating": 4.2}
     ],
 
     "tags": [
@@ -26,5 +25,11 @@
 
     "shopping_cart_item_ids":[
         1, 2
+    ],
+
+    "images": [
+        {"id": 1, "name": "wristwatch-1.jpg"},
+        {"id": 2, "name": "wristwatch-2.jpg"},
+        {"id": 3, "name": "clock-1.jpg"}
     ]
 }

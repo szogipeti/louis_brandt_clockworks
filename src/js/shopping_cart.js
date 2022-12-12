@@ -1,43 +1,100 @@
 'use strict';
 
-const itemsPromise = fetch();
-Promise.all([itemsPromise]).then((data) => loadItems(data));
+let itemIds = [];
 
-function fetch(){
+Promise.all([fetchIds()]).then((data) => itemIds = data[0]);
+
+Promise.all([fetchItems()]).then((data) => loadItems(data[0]));
+
+function fetchIds(){
     return new Promise(async function(resolve, reject){
         const res = await fetch("http://localhost:8888/shopping_cart_item_ids");
+
+        resolve(res.json());
+    
+    });
+}
+
+
+function fetchItems(){
+    return new Promise(async function(resolve, reject){
+        const res = await fetch("http://localhost:8888/items");
+
         resolve(res.json());
     });
 }
 
+
 function loadItems(items){
+
+
     
     const itemContainer = document.querySelector('#item-container');
 
     for(const item of items){
+
+        let a = !itemIds.includes(item.id);
+        if( a ){
+            continue;
+        }
+
+        const template = document.getElementsByTagName("template")[0];
+
+        const templateContent = template.content.querySelector("a");
+
+        let templateCopy = document.importNode(templateContent,true);
+
+        templateCopy.querySelector("img").setAttribute("src", "src/img/" + "wristwatch-1.jpg");
+    
+        templateCopy.querySelector("h5").innerHTML = item.title;
+    
+        templateCopy.querySelector("h6").innerHTML = item.brandId;
+       
+        templateCopy.querySelector("p").innerHTML = item.description;
+       
+        
+        /*
+        const badges = templateCopy.getElementById("badge-container");
+
+        for(const tagId of item.tagIds){
+            const p = document.createElement('p');
+            p.classList.add('badge',  'bg-secondary');
+            p.innerHTML = "Férfiú";
+            badges.appendChild(p);
+        }
+        */
+
+
+      //  templateCopy.getElementById("price").innerHTML = item.price + " " + item.currency;
+
+        
+        
+        itemContainer.appendChild(templateCopy);
+
+        /*
         const card = document.createElement('a');
         card.classList.add('card', "m-4", "shadow-lg", "text-dark", "w-75", "mx-auto");
         card.setAttribute("href", "item_page.html");
         
         const row = document.createElement('div');
-        card.classList.add('row');
+        row.classList.add('row');
     
         const col3 = document.createElement('div');
-        card.classList.add('col-3');
+        col3.classList.add('col-3');
     
         const img = document.createElement('img');
-        card.classList.add('card-img');
-        card.setAttribute("id", "purchase-item-image");
-        card.setAttribute("src", "src/img/" + "wristwatch-1.jpg");
+        img.classList.add('card-img');
+        img.setAttribute("id", "purchase-item-image");
+        img.setAttribute("src", "src/img/" + "wristwatch-1.jpg");
     
         col3.appendChild(img);
     
     
         const col9 = document.createElement('div');
-        card.classList.add('col-9');
+        col9.classList.add('col-9');
     
         const cardBody = document.createElement('div');
-        card.classList.add('card-body');
+        cardBody.classList.add('card-body');
     
         const h5 = document.createElement('h5');
         h5.classList.add('card-title');
@@ -78,13 +135,15 @@ function loadItems(items){
         cardBody.appendChild(p);
         cardBody.appendChild(badges);
         cardBody.appendChild(p3);
+
+        col9.append(cardBody);
     
         row.appendChild(col3);
         row.appendChild(col9);
         card.appendChild(row);
     
         itemContainer.appendChild(card);
-    
+        */
     }
 
     

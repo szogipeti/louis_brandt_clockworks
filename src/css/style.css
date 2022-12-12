@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+#title{
+    color: #FFFBeB;
+}
+
 body{
     background-color: #FFFBeB;
     color: #21252e;
@@ -54,11 +58,13 @@ body{
 .btn-outline-custom:any-link{
     border-color: #FFFBeB;
     color: #FFFBeB;
+    background-color: #FFFBeB;
 }
 
 .btn-outline-custom:hover{
     background-color: #FFFBeB;
-    color: #3D3331;
+    color: #FFFBeB; 
+    
 }
 
 #carouselWatchControls img{
