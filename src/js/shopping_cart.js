@@ -53,8 +53,8 @@ function loadItems(items){
         templateCopy.querySelector("p").innerHTML = item.description;
        
         
-        /*
-        const badges = templateCopy.getElementById("badge-container");
+        
+        const badges = templateCopy.querySelector("#badge-container");
 
         for(const tagId of item.tagIds){
             const p = document.createElement('p');
@@ -62,10 +62,10 @@ function loadItems(items){
             p.innerHTML = "Férfiú";
             badges.appendChild(p);
         }
-        */
+        
 
 
-      //  templateCopy.getElementById("price").innerHTML = item.price + " " + item.currency;
+       templateCopy.querySelector("#price").innerHTML = item.price + " " + item.currency;
 
         
         
