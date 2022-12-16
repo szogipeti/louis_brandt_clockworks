@@ -44,7 +44,7 @@ function loadItems(items){
 
         let templateCopy = document.importNode(templateContent,true);
 
-        templateCopy.querySelector("img").setAttribute("src", "src/img/" + "wristwatch-1.jpg");
+        templateCopy.querySelector("img").setAttribute("src", "img/" + "wristwatch-1.jpg");
     
         templateCopy.querySelector("h5").innerHTML = item.title;
     

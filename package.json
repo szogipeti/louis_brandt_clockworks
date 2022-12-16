@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
+    "build": "vite build",
     "test": "vitest",
     "test:ui": "vitest --ui"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "vite": "^4.0.1"
   },
   "devDependencies": {

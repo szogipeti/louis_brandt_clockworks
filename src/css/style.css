@@ -22,9 +22,15 @@ body{
 }
 
 #categoryNavbar{
+    position: relative;
     height: 60px;
     border-top: 1px solid #21252e77;
-    z-index: 99999;
+    z-index: 1000;
+}
+
+#categoryNavbar .dropdown-menu{
+    margin: 0;
+    padding: 0;
 }
 
 #categoryNavbar a{
@@ -53,8 +59,6 @@ body{
     width: 25px;
 }
 
-
-
 .btn-outline-custom:any-link{
     border-color: #FFFBeB;
     color: #FFFBeB;
@@ -64,7 +68,6 @@ body{
 .btn-outline-custom:hover{
     background-color: #FFFBeB;
     color: #FFFBeB; 
-    
 }
 
 #carouselWatchControls img{
@@ -97,8 +100,8 @@ h2{
 }
 
 a:any-link {
-color: inherit;
-text-decoration: inherit;
+    color: inherit;
+    text-decoration: inherit;
 }
 
 #item-container{

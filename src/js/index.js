@@ -1,5 +1,10 @@
 'use strict';
 
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../css/style.css";
+import FetchHelper from "./FetchHelper.js";
+
 let items = [];
 let brands = [];
 let tags = [];
@@ -73,7 +78,7 @@ async function createCardTemplate(item){
     let templateCopy = document.importNode(templateContent,true);
     
     const img = templateCopy.querySelector('img');
-    await FetchHelper.read(`images?id=${item.imageId}`).then(data => img.src = `./src/img/${data[0].name}`)
+    await FetchHelper.read(`images?id=${item.imageId}`).then(data => img.src = `./img/${data[0].name}`)
 
     const cardTitle = templateCopy.querySelector('h5');
     cardTitle.textContent = item.title;

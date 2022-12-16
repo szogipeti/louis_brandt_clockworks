@@ -1,5 +1,5 @@
 'use strict';
-class FetchHelper{
+export default class FetchHelper{
     static #url = "http://localhost:8888/";
 
     static read(path){
