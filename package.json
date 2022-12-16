@@ -1,0 +1,20 @@
+{
+  "name": "louis-brandt-clockworks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest",
+    "test:ui": "vitest --ui"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vite": "^4.0.1"
+  },
+  "devDependencies": {
+    "@vitest/ui": "^0.25.8",
+    "vitest": "^0.25.8"
+  }
+}
