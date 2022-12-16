@@ -17,46 +17,49 @@ async function onLoad(){
     loadCards(items);
 }
 
-function loadNavbar(tags, brands){
-    const categoryNavbar = document.querySelector('#categoryNavbar ul');
-    const brandsDropdown = document.createElement('li');
-    brandsDropdown.classList.add('nav-item', 'dropdown', 'mx-3');
+function loadNavbar(){
+    const categoryNavbar = document.querySelector('#categoryNavbar');
 
-    const dropdownToggle = document.createElement('a');
-    dropdownToggle.classList.add('nav-link', 'dropdown-toggle')
-    dropdownToggle.setAttribute("role", "button");
-    dropdownToggle.setAttribute("data-bs-toggle", "dropdown");
-    dropdownToggle.setAttribute("aria-expanded", "false");
-    dropdownToggle.textContent = 'Brands';
+    const template = document.getElementsByTagName('template')[0];
+    const templateContent = template.content.querySelector(".template-nav");
+    const templateCopy = document.importNode(templateContent, true);
 
-    const dropdownMenu = document.createElement('ul');
-    dropdownMenu.classList.add('dropdown-menu');
-
+    const dropdownMenu = templateCopy.querySelector('.dropdown-menu');
     for(const brand of brands){
-        const li = document.createElement('li');
-        li.classList.add('dropdown-item');
-        li.textContent = brand.name;
+        const li = createBrandListItem(brand);
         dropdownMenu.append(li);
     }
-    categoryNavbar.append(brandsDropdown);
 
-
+    const navbar = templateCopy.querySelector('.navbar-nav')
     for(const tag of tags){
-        const li = document.createElement('li');
-        li.classList.add('nav-item', 'mx-3');
-        const a = document.createElement('a');
-        a.classList.add('nav-link');
-        a.textContent = tag.name;
-        a.href = '#';
-        li.append(a);
-        categoryNavbar.append(li);
+        const li = createTagListItem(tag);
+        navbar.append(li);
     }
 
-    brandsDropdown.append(dropdownToggle);
-    brandsDropdown.append(dropdownMenu);
+    categoryNavbar.append(templateCopy);
 }
 
-function loadCards(items){
+function createBrandListItem(brand){
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.classList.add('dropdown-item');
+    a.textContent = brand.name;
+    li.append(a);
+    return li;
+}
+
+function createTagListItem(tag){
+    const li = document.createElement('li');
+    li.classList.add('nav-item', 'mx-3');
+    const a = document.createElement('a');
+    a.classList.add('nav-link');
+    a.textContent = tag.name;
+    a.href = '#';
+    li.append(a);
+    return li;
+}
+
+function loadCards(){
     for (const item of items){
         createCardTemplate(item);
     }
@@ -65,7 +68,7 @@ function loadCards(items){
 async function createCardTemplate(item){
     const itemContainer = document.querySelector('#item-container .row');
 
-    const template = document.getElementsByTagName("template")[0];
+    const template = document.getElementsByTagName("template")[1];
     const templateContent = template.content.querySelector(".template-card");
     let templateCopy = document.importNode(templateContent,true);
     
