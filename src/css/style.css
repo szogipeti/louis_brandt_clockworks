@@ -69,6 +69,9 @@ body{
 
 #carouselWatchControls img{
     height: 750px;
+}
+
+img{
     object-fit: cover;
 }
 
@@ -87,6 +90,10 @@ h2{
 
 .card-text{
     text-align: justify;
+}
+
+.card-img-top{
+    height: 250px;
 }
 
 a:any-link {
