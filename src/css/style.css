@@ -59,15 +59,14 @@ body{
     width: 25px;
 }
 
-.btn-outline-custom:any-link{
+.btn-outline-custom{
     border-color: #FFFBeB;
-    color: #FFFBeB;
+    color: #21252e;
     background-color: #FFFBeB;
 }
 
 .btn-outline-custom:hover{
     background-color: #FFFBeB;
-    color: #FFFBeB; 
 }
 
 #carouselWatchControls img{
