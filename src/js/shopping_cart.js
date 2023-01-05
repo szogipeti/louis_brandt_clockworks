@@ -53,30 +53,36 @@ async function loadItems(){
     
         templateCopy.querySelector("h5").innerHTML = item.title;
     
-        templateCopy.querySelector("h6").innerHTML = item.brandId;
+        const cardBrand = templateCopy.querySelector('h6');
+        await FetchHelper.read(`brands?id=${item.brandId}`).then(data => cardBrand.textContent = data[0].name);
        
         templateCopy.querySelector("p").innerHTML = item.description;
-       
-
         
         const badges = templateCopy.querySelector("#badge-container");
 
         for(const tagId of item.tagIds){
-            const p = document.createElement('p');
-            p.classList.add('badge', 'bg-secondary', 'mx-1');
-            p.innerHTML = "Férfiú";
-            badges.appendChild(p);
+            let badgeText = "";
+            await FetchHelper.read(`tags?id=${tagId}`).then(data => badgeText = data[0].name).then(data => console.log(data));
+            templateCopy.querySelector('#badge-container').append(createBadge(badgeText));
         }
         
-        console.table(itemIds);
         templateCopy.querySelector("#quantity").textContent = itemIds.count(item.id);
 
         templateCopy.querySelector("#price").innerHTML = item.price + " " + item.currency;
 
-        
+        templateCopy.querySelector('#plusBtn').addEventListener("click", () => plus(item.id));
+        templateCopy.querySelector('#minusBtn').addEventListener("click", () => minus(item.id));
+
         
         itemContainer.appendChild(templateCopy);
     }
+}
+
+function createBadge(badgeText){
+    const badge = document.createElement('p');
+    badge.classList.add('badge', 'bg-secondary', 'mx-1');
+    badge.textContent = badgeText;
+    return badge;
 }
 
 async function rmFromBasket(id){
@@ -84,8 +90,8 @@ async function rmFromBasket(id){
         if(item.itemId == id){
             await FetchHelper.delete('shopping_cart_item_ids', item.id);
         }
-        location.href = "../shopping-cart.html";
     }
+    location.href = "../shopping-cart.html";
 }
 
 async function purchase(){
@@ -93,4 +99,27 @@ async function purchase(){
         await FetchHelper.delete('shopping_cart_item_ids', item.id).then(data => console.log(data));
     }
     location.href = "../index.html";
+}
+
+async function plus(id){
+    const data = {
+        "itemId": id
+    };
+    await FetchHelper.create('shopping_cart_item_ids', data);
+    location.href = "../shopping-cart.html";
+}
+
+async function minus(id){
+    try{
+        for(const item of itemIds){
+            if(item.itemId == id){
+                await FetchHelper.delete('shopping_cart_item_ids', item.id);
+                break;
+            }
+        }
+        location.href = "../shopping-cart.html";
+    }
+    catch{
+
+    }
 }
