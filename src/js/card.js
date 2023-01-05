@@ -15,6 +15,9 @@ async function createCardTemplate(item){
     const templateContent = template.content.querySelector(".template-card");
     let templateCopy = document.importNode(templateContent,true);
     
+    const a = templateCopy.querySelector('a');
+    a.href=`../item_page.html?id=${item.id}`;
+
     const img = templateCopy.querySelector('img');
     await FetchHelper.read(`images?id=${item.imageId}`).then(data => img.src = `./img/${data[0].name}`)
 
@@ -23,9 +26,6 @@ async function createCardTemplate(item){
 
     const cardBrand = templateCopy.querySelector('h6');
     await FetchHelper.read(`brands?id=${item.brandId}`).then(data => cardBrand.textContent = data[0].name);
-
-    const cardDescription = templateCopy.querySelector('#description');
-    cardDescription.textContent = item.description;
 
     for(const tagId of item.tagIds){
         let badgeText = "";

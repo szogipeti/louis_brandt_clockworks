@@ -5,9 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Louis Brandt Clockworks</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav id="topNavbar" class="navbar bg-gradient">
@@ -27,24 +24,24 @@
     
     <div id="item-container" class="container-fluid">
         <div href="#" class="card m-4 shadow-lg text-dark w-75 mx-auto">
-            <img class="card-img-top" src="./img/wristwatch-1.jpg" alt="Card image cap">
+            <img id="watchImage" class="card-img-top" src="" alt="Card image cap">
                 
                 <div class="card-body">
-                    <h2 class="card-title text-center">Watch numero uno</h2>
-                    <h3 class="card-title text-center">Rolex</h3>
-                    <p class="card-text text-justify m-4">The Industrial Revolution and its consequences have been a disaster for the human race. They have greatly increased the life-expectancy of those of us who live in “advanced” countries, but they have destabilized society, have made life unfulfilling, have subjected human beings to indignities, have led to widespread psychological suffering (in the Third World to physical suffering as well) and have inflicted severe damage on the natural world. The continued development of technology will worsen the situation. It will certainly subject human being to greater indignities and inflict greater damage on the natural world, it will probably lead to greater social disruption and psychological suffering, and it may lead to increased physical suffering even in “advanced” countries. The industrial-technological system may survive or it may break down. If it survives, it MAY eventually achieve a low level of physical and psychological suffering, but only after passing through a long and very painful period of adjustment and only at the cost of permanently reducing human beings and many other living organisms to engineered products and mere cogs in the social machine. Furthermore, if the system survives, the consequences will be inevitable: There is no way of reforming or modifying the system so as to prevent it from depriving people of dignity and autonomy. If the system breaks down the consequences will still be very painful. But the bigger the system grows the more disastrous the results of its breakdown will be, so if it is to break down it had best break down sooner rather than later. We therefore advocate a revolution against the industrial system. This revolution may or may not make use of violence; it may be sudden or it may be a relatively gradual process spanning a few decades. We can’t predict any of that. But we do outline in a very general way the measures that those who hate the industrial system should take in order to prepare the way for a revolution against that form of society. This is not to be a POLITICAL revolution. Its object will be to overthrow not governments but the economic and technological basis of the present society. In this article we give attention to only some of the negative developments that have grown out of the industrial-technological system. Other such developments we mention only briefly or ignore altogether. This does not mean that we regard these other developments as unimportant. For practical reasons we have to confine our discussion to areas that have received insufficient public attention or in which we have something new to say. For example, since there are well-developed environmental and wilderness movements, we have written very little about environmental degradation or the destruction of wild nature, even though we consider these to be highly important.</p>
+                    <h2 id="watchTitle" class="card-title text-center"></h2>
+                    <h5 id="brand" class="card-title text-center"></h3>
+                    <p id="description" class="card-text text-justify my-3"></p>
 
                     <div class="text-dark" id="badge-container">
-                        <p class="badge bg-secondary">Férfi,</p>
-                        <p class="badge bg-secondary">Elegáns</p>
+
                     </div>
                     
-                    <h5 class="card-text text-end">2000 USD</h5>
+                    <h5 id="price" class="card-text text-end"></h5>
                 </div>
         </div>
     </div>
 
     <button type="button" id="fab" class="btn pmd-btn-fab pmd-ripple-effect btn-secondary"><i class="material-icons pmd-sm">Add to shopping cart</i></button>
-
+    <script src="./main.js" type="module"></script>
+    <script src="./js/item_page.js" type="module"></script>
 </body>
 </html>

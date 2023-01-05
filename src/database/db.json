@@ -24,7 +24,8 @@
     ],
 
     "shopping_cart_item_ids":[
-        1, 2
+        { "id": 1, "itemId": 1},
+        { "id": 2, "itemId": 2}
     ],
 
     "images": [
