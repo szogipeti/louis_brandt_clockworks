@@ -17,6 +17,9 @@ async function onLoad(){
         }
         return count;
     }
+
+    document.getElementById('purchaseBtn').onclick = purchase;
+
     let itemIdArray = [];
     await FetchHelper.read("shopping_cart_item_ids").then(data => itemIds = data).then((data) =>{
         const itemIdArray =  [];
@@ -83,4 +86,11 @@ async function rmFromBasket(id){
         }
         location.href = "../shopping-cart.html";
     }
+}
+
+async function purchase(){
+    for(const item of itemIds){
+        await FetchHelper.delete('shopping_cart_item_ids', item.id).then(data => console.log(data));
+    }
+    location.href = "../index.html";
 }
