@@ -8,6 +8,23 @@ let items = [];
 window.onload = onLoad;
 
 async function onLoad(){
+    createCountPrototype();
+
+    document.getElementById('purchaseBtn').onclick = purchase;
+
+    let itemIdArray = [];
+    getItemIdArray().then(data => itemIdArray = data);
+
+    await FetchHelper.read("items").then(data => items = data);
+    items = items.filter(x=>itemIdArray.includes(x.id));
+
+    const fullPrice = document.getElementById('fullPrice');
+    getFullPrice().then(data => fullPrice.textContent = `Full Price: ${data} USD`);
+    
+    loadItems();
+}
+
+function createCountPrototype(){
     Object.prototype.count = function(id) {
         let count = 0;
         for (const item of this.values()){
@@ -17,9 +34,9 @@ async function onLoad(){
         }
         return count;
     }
+}
 
-    document.getElementById('purchaseBtn').onclick = purchase;
-
+async function getItemIdArray(){
     let itemIdArray = [];
     await FetchHelper.read("shopping_cart_item_ids").then(data => itemIds = data).then((data) =>{
         const itemIdArray =  [];
@@ -28,17 +45,16 @@ async function onLoad(){
         }
         return itemIdArray;
     }).then(data => itemIdArray = data);
-    await FetchHelper.read("items").then(data => items = data);
-    items = items.filter(x=>itemIdArray.includes(x.id));
+    return itemIdArray;
+}
 
+async function getFullPrice(){
     let fullPrice = 0;
     for(const item of itemIds){
         await FetchHelper.read(`items/${item.itemId}`).then(data => fullPrice += parseInt(data.price));
     }
-    document.getElementById('fullPrice').textContent = `Full Price: ${fullPrice} USD`
-    loadItems();
+    return fullPrice;
 }
-
 
 async function loadItems(){
     const itemContainer = document.querySelector('#item-container');
@@ -46,39 +62,30 @@ async function loadItems(){
     for(const item of items){
 
         const template = document.getElementsByTagName("template")[0];
-
         const templateContent = template.content.querySelector("#horizontal-card-template");
-
         let templateCopy = document.importNode(templateContent,true);
 
         const img = templateCopy.querySelector("img");
-        console.log(templateCopy.querySelector('#purchase-item-image'));
         await FetchHelper.read(`images?id=${item.imageId}`).then(data => img.setAttribute("src", `./img/${data[0].name}`))
         
         templateCopy.querySelector('#closeBtn').addEventListener("click", () => rmFromBasket(item.id));
-    
         templateCopy.querySelector("h5").innerHTML = item.title;
     
         const cardBrand = templateCopy.querySelector('h6');
         await FetchHelper.read(`brands?id=${item.brandId}`).then(data => cardBrand.textContent = data[0].name);
        
         templateCopy.querySelector("p").innerHTML = item.description;
-        
-        const badges = templateCopy.querySelector("#badge-container");
 
         for(const tagId of item.tagIds){
             let badgeText = "";
-            await FetchHelper.read(`tags?id=${tagId}`).then(data => badgeText = data[0].name).then(data => console.log(data));
+            await FetchHelper.read(`tags?id=${tagId}`).then(data => badgeText = data[0].name);
             templateCopy.querySelector('#badge-container').append(createBadge(badgeText));
         }
         
         templateCopy.querySelector("#quantity").textContent = itemIds.count(item.id);
-
         templateCopy.querySelector("#price").innerHTML = item.price * itemIds.count(item.id) + " " + item.currency;
-
         templateCopy.querySelector('#plusBtn').addEventListener("click", () => plus(item.id));
         templateCopy.querySelector('#minusBtn').addEventListener("click", () => minus(item.id));
-
         
         itemContainer.appendChild(templateCopy);
     }

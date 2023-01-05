@@ -29,7 +29,7 @@ async function createCardTemplate(item){
 
     for(const tagId of item.tagIds){
         let badgeText = "";
-        await FetchHelper.read(`tags?id=${tagId}`).then(data => badgeText = data[0].name).then(data => console.log(data));
+        await FetchHelper.read(`tags?id=${tagId}`).then(data => badgeText = data[0].name);
         templateCopy.querySelector('#badge-container').append(createBadge(badgeText));
     }
 
