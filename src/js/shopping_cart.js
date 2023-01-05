@@ -30,6 +30,12 @@ async function onLoad(){
     }).then(data => itemIdArray = data);
     await FetchHelper.read("items").then(data => items = data);
     items = items.filter(x=>itemIdArray.includes(x.id));
+
+    let fullPrice = 0;
+    for(const item of itemIds){
+        await FetchHelper.read(`items/${item.itemId}`).then(data => fullPrice += parseInt(data.price));
+    }
+    document.getElementById('fullPrice').textContent = `Full Price: ${fullPrice} USD`
     loadItems();
 }
 
@@ -68,7 +74,7 @@ async function loadItems(){
         
         templateCopy.querySelector("#quantity").textContent = itemIds.count(item.id);
 
-        templateCopy.querySelector("#price").innerHTML = item.price + " " + item.currency;
+        templateCopy.querySelector("#price").innerHTML = item.price * itemIds.count(item.id) + " " + item.currency;
 
         templateCopy.querySelector('#plusBtn').addEventListener("click", () => plus(item.id));
         templateCopy.querySelector('#minusBtn').addEventListener("click", () => minus(item.id));
