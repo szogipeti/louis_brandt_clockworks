@@ -8,16 +8,25 @@ let items = [];
 window.onload = onLoad;
 
 async function onLoad(){
-
-    await FetchHelper.read("shopping_cart_item_ids").then((data) =>{
-        const itemIds =  [];
-        for(const item of data){
-            itemIds.push(item.itemId);
+    Object.prototype.count = function(id) {
+        let count = 0;
+        for (const item of this.values()){
+            if(item.itemId == id){
+                count++;
+            }
         }
-        return itemIds;
-    }).then(data => itemIds = data);
+        return count;
+    }
+    let itemIdArray = [];
+    await FetchHelper.read("shopping_cart_item_ids").then(data => itemIds = data).then((data) =>{
+        const itemIdArray =  [];
+        for(const item of data){
+            itemIdArray.push(item.itemId);
+        }
+        return itemIdArray;
+    }).then(data => itemIdArray = data);
     await FetchHelper.read("items").then(data => items = data);
-    items = items.filter(x=>itemIds.includes(x.id));
+    items = items.filter(x=>itemIdArray.includes(x.id));
     loadItems();
 }
 
@@ -37,7 +46,7 @@ async function loadItems(){
         console.log(templateCopy.querySelector('#purchase-item-image'));
         await FetchHelper.read(`images?id=${item.imageId}`).then(data => img.setAttribute("src", `./img/${data[0].name}`))
         
-       templateCopy.querySelector('#closeBtn').onclick = RmFromBasket;
+        templateCopy.querySelector('#closeBtn').addEventListener("click", () => rmFromBasket(item.id));
     
         templateCopy.querySelector("h5").innerHTML = item.title;
     
@@ -45,7 +54,7 @@ async function loadItems(){
        
         templateCopy.querySelector("p").innerHTML = item.description;
        
-        
+
         
         const badges = templateCopy.querySelector("#badge-container");
 
@@ -56,9 +65,10 @@ async function loadItems(){
             badges.appendChild(p);
         }
         
+        console.table(itemIds);
+        templateCopy.querySelector("#quantity").textContent = itemIds.count(item.id);
 
-
-       templateCopy.querySelector("#price").innerHTML = item.price + " " + item.currency;
+        templateCopy.querySelector("#price").innerHTML = item.price + " " + item.currency;
 
         
         
@@ -66,6 +76,11 @@ async function loadItems(){
     }
 }
 
-function  RmFromBasket(){
-
+async function rmFromBasket(id){
+    for(const item of itemIds){
+        if(item.itemId == id){
+            await FetchHelper.delete('shopping_cart_item_ids', item.id);
+        }
+        location.href = "../shopping-cart.html";
+    }
 }

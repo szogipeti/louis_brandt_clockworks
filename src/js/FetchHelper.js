@@ -25,4 +25,14 @@ export default class FetchHelper{
             resolve(res.json());
         });
     }
+
+    static delete(path, id){
+        return new Promise(async function(resolve, reject){
+            const res = await fetch(FetchHelper.#url + path + '/' + id, {
+                method: "DELETE",
+                headers: FetchHelper.#headers
+            });
+            resolve(res.json());
+        });
+    }
 }
