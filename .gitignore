@@ -3,3 +3,8 @@ node_modules/
 
 # Builds
 src/dist/
+
+# Visual Studio
+.vs/
+bin/
+obj/
