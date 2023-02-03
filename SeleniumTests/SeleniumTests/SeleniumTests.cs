@@ -1,7 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.DevTools.V107.Profiler;
+using OpenQA.Selenium.Interactions;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace SeleniumTests
@@ -20,7 +23,7 @@ namespace SeleniumTests
         [TestMethod]
         public void GoToShoppingPage()
         {
-            driver.FindElement(By.CssSelector("nav li a")).Click();
+            GoToShoppingCart();
             Assert.AreEqual("Items in your cart:", driver.FindElement(By.CssSelector("#item-container h2")).Text);
         }
         [TestMethod]
@@ -41,6 +44,88 @@ namespace SeleniumTests
             driver.FindElement(By.CssSelector("nav li input[type=submit]")).Click();
             System.Threading.Thread.Sleep(500);
             Assert.AreEqual("ora1", driver.FindElement(By.CssSelector("#item-container h5")).Text);
+        }
+        private void GoToItemPage()
+        {
+            Actions actions = new Actions(driver);
+            actions.ScrollByAmount(0, 400);
+            actions.Perform();
+            System.Threading.Thread.Sleep(500);
+            IWebElement element = driver.FindElement(By.CssSelector("#item-container a"));
+            try
+            {
+                element.Click();
+            }
+            catch
+            {
+                element.Click();
+            }
+        }
+        private void GoToShoppingCart()
+        {
+            driver.FindElement(By.CssSelector("nav li a")).Click();
+        }
+        [TestMethod]
+        public void TestItemPage()
+        {
+            GoToItemPage();
+            System.Threading.Thread.Sleep(500);
+            Assert.AreEqual("ora1", driver.FindElement(By.CssSelector("#item-container h2")).Text);
+        }
+        [TestMethod]
+        public void TestPurchase()
+        {
+            GoToShoppingCart();
+            driver.FindElement(By.Id("purchaseBtn")).Click();
+            Assert.AreEqual("Louis Brandt Clockworks", driver.FindElement(By.TagName("h1")).Text);
+            driver.FindElement(By.CssSelector("nav li a")).Click();
+            Assert.AreEqual("Full Price: 0 USD", driver.FindElement(By.Id("fullPrice")).Text);
+        }
+        [TestMethod]
+        public void TestAddToShoppingCart()
+        {
+            GoToShoppingCart();
+            driver.FindElement(By.Id("purchaseBtn")).Click();
+            GoToItemPage();
+            System.Threading.Thread.Sleep(500);
+            driver.FindElement(By.TagName("button")).Click();
+            GoToShoppingCart();
+            Assert.AreEqual("Full Price: 1000 USD", driver.FindElement(By.Id("fullPrice")).Text);
+        }
+        [TestMethod]
+        public void TestPlusButton()
+        {
+            GoToShoppingCart();
+            driver.FindElement(By.Id("purchaseBtn")).Click();
+            GoToItemPage();
+            System.Threading.Thread.Sleep(500);
+            driver.FindElement(By.TagName("button")).Click();
+            GoToShoppingCart();
+            driver.Navigate().Refresh();
+            System.Threading.Thread.Sleep(500);
+            driver.FindElement(By.Id("plusBtn")).Click();
+            System.Threading.Thread.Sleep(500);
+            Assert.AreEqual("2", driver.FindElement(By.Id("quantity")).Text);
+            Assert.AreEqual("Full Price: 2000 USD", driver.FindElement(By.Id("fullPrice")).Text);
+
+        }
+        [TestMethod]
+        public void TestMinusButton()
+        {
+            GoToShoppingCart();
+            driver.FindElement(By.Id("purchaseBtn")).Click();
+            GoToItemPage();
+            System.Threading.Thread.Sleep(500);
+            driver.FindElement(By.TagName("button")).Click();
+            GoToShoppingCart();
+            driver.Navigate().Refresh();
+            System.Threading.Thread.Sleep(500);
+            driver.FindElement(By.Id("plusBtn")).Click();
+            System.Threading.Thread.Sleep(500);
+            driver.FindElement(By.Id("minusBtn")).Click();
+            System.Threading.Thread.Sleep(500);
+            Assert.AreEqual("1", driver.FindElement(By.Id("quantity")).Text);
+            Assert.AreEqual("Full Price: 1000 USD", driver.FindElement(By.Id("fullPrice")).Text);
         }
         [TestCleanup]
         public void ChromeDriverCleanup()

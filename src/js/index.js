@@ -20,5 +20,5 @@ async function onLoad(){
     await FetchHelper.read('images').then(data => imgs = data);
     addEventListener('submit', redirectToSearchPage);
     loadNavbar(tags, brands);
-    loadCards(items);
+    loadCards(items.sort((a, b) => a.title < b.title));
 }
