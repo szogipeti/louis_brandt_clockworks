@@ -34,6 +34,14 @@ namespace SeleniumTests
             Assert.AreEqual("ora4", webElements.ElementAt(2).Text);
             Assert.AreEqual("ora3", webElements.ElementAt(3).Text);
         }
+        [TestMethod]
+        public void TestSearch()
+        {
+            driver.FindElement(By.CssSelector("input[type=search]")).SendKeys("1");
+            driver.FindElement(By.CssSelector("nav li input[type=submit]")).Click();
+            System.Threading.Thread.Sleep(500);
+            Assert.AreEqual("ora1", driver.FindElement(By.CssSelector("#item-container h5")).Text);
+        }
         [TestCleanup]
         public void ChromeDriverCleanup()
         {
